@@ -1,0 +1,30 @@
+{
+  "registers": {
+    "formal": {
+      "pronouns_subject": ["ข้าพเจ้า", "ทางบริษัท"],
+      "ending_particles": ["ครับ", "ค่ะ"],
+      "use_case": "Corporate Identity, Government Tenders"
+    },
+    "semi_formal": {
+      "pronouns_subject": ["เรา", "ทีมงาน"],
+      "ending_particles": ["ครับ", "ค่ะ"],
+      "use_case": "Agency Pitches, Professional Vlogs"
+    },
+    "casual": {
+      "pronouns_subject": ["พี่", "น้อง", "เรา", "เค้า"],
+      "ending_particles": ["นะ", "ครับผม", "ค่าา"],
+      "use_case": "Lifestyle Content, Influencer Reviews"
+    },
+    "gen_z_slang": {
+      "pronouns_subject": ["แก", "ตัวแม่", "ชี"],
+      "ending_particles": ["นะน้องนะ", "จึ้ง", "คุณน้า"],
+      "use_case": "TikTok, Short-form viral content"
+    }
+  },
+  "cultural_hooks": [
+    "Mu-te-lu (Fortune/Spirituality)",
+    "Huy-Ha (Absurdist Humor)",
+    "Drama-Emotional (Sad-vertising)",
+    "Social-Reflexive (Satire of daily life)"
+  ]
+}
