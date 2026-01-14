@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # ThaiCreative AI Gateway
+  api-gateway:
+    image: tcai-api-service:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://user:pass@db:5432/tcai
+      - REDIS_URL=redis://cache:6379
+      - AI_ORCHESTRATOR_URL=http://ai-orchestrator:5000
+    depends_on:
+      - db
+      - cache
+
+  # AI Orchestrator (Python)
+  ai-orchestrator:
+    build: ./src/ai-engine
+    environment:
+      - PHAYA_THAI_MODEL_ENDPOINT=http://gpu-cluster-internal/v1
+      - VECTOR_DB_HOST=vector-db
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+
+  # Local Vector DB for Thai Context
+  vector-db:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: tcai
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  cache:
+    image: redis:7-alpine
+
+volumes:
+  postgres_data:
+  qdrant_data:
