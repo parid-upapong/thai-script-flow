@@ -1,0 +1,27 @@
+{
+  "project_name": "ThaiAI Creative Pro",
+  "ceo_priority": "Localization is our Moat",
+  "target_segments": [
+    {
+      "segment": "Top-tier Advertising Agencies",
+      "pain_point": "Inefficient storyboard loops and cultural disconnect in global AI tools",
+      "solution": "High-fidelity Thai-context storyboards"
+    },
+    {
+      "segment": "Solo Content Creators",
+      "pain_point": "Lack of production crew and scripting expertise",
+      "solution": "Virtual Production Assistant"
+    }
+  ],
+  "competitive_advantages": [
+    "Deep Thai Language Nuance",
+    "Local Production Cost Database",
+    "Thai Talent/Location Image Datasets",
+    "Regulatory Compliance (NBTC/Thai Laws)"
+  ],
+  "kpis": {
+    "speed_to_market": "Reduction in pre-production time by 60%",
+    "accuracy": "90% satisfaction rate on Thai slang generation",
+    "adoption": "Onboarding 50 major Thai agencies within 12 months"
+  }
+}
