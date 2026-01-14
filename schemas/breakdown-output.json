@@ -1,0 +1,28 @@
+{
+  "project_metadata": {
+    "title": "โฆษณาครีมกันแดด 2024",
+    "version": "1.2",
+    "language": "th-TH"
+  },
+  "breakdown_sheets": [
+    {
+      "scene_id": "SC01",
+      "slugline": "EXT. สยามสแควร์ - กลางวัน",
+      "elements": {
+        "talent": ["นีน่า", "กลุ่มเพื่อน"],
+        "props": ["โทรศัพท์มือถือ", "ครีมกันแดด", "แก้วชานมไข่มุก"],
+        "wardrobe": "ชุดเดินสยาม ทันสมัย (Street Fashion)",
+        "special_instructions": "ต้องถ่ายช่วงเวลา 11:00 น. เพื่อให้ได้แสง Hard Light"
+      },
+      "shot_list": [
+        {"shot": "1", "type": "Wide", "description": "บรรยากาศสยามสแควร์ คนเดินพลุกพล่าน"},
+        {"shot": "2", "type": "MCU", "description": "นีน่าหยิบชานมขึ้นมาดื่ม"}
+      ],
+      "logistics": {
+        "estimated_time": "3.5 hours",
+        "permits_required": "Siam Square Management",
+        "traffic_warning": "ควรเดินทางถึงก่อน 10:00 น. เพื่อเลี่ยงรถติดพระราม 1"
+      }
+    }
+  ]
+}
