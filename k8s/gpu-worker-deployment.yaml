@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phaya-thai-inference
+  namespace: tcai-ai-layer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: phaya-thai-llm
+  template:
+    metadata:
+      labels:
+        app: phaya-thai-llm
+    spec:
+      containers:
+      - name: vllm-engine
+        image: vllm/vllm-openai:latest
+        args: [
+          "--model", "/models/phaya-thai-70b",
+          "--tensor-parallel-size", "4",
+          "--gpu-memory-utilization", "0.95"
+        ]
+        resources:
+          limits:
+            nvidia.com/gpu: 4 # Request 4 A100/H100 GPUs
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: model-storage
+          mountPath: /models
+      volumes:
+      - name: model-storage
+        persistentVolumeClaim:
+          claimName: tcai-model-pvc
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ai-inference-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: phaya-thai-inference
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Pods
+    pods:
+      metric:
+        name: request_latency_ms
+      target:
+        type: AverageValue
+        averageValue: 500m
