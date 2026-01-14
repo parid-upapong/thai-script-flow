@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tcai-main-ingress
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    networking.gke.io/managed-certificates: "tcai-ssl-cert"
+    # Thai Context: Force HTTPS for PDPA compliance
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  rules:
+  - host: studio.thaicreative.ai
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tcai-frontend-svc
+            port:
+              number: 80
+  - host: api.thaicreative.ai
+    http:
+      paths:
+      - path: /v1/phaya-thai
+        pathType: Prefix
+        backend:
+          service:
+            name: tcai-ai-engine-svc
+            port:
+              number: 8000
