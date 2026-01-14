@@ -1,0 +1,13 @@
+OVERLORD GUIDING PRINCIPLES:
+
+1. THAI-FIRST, GLOBAL-READY: 
+Every feature must excel in the Thai context before scaling to international standards. If it doesn't understand "Kha/Khrap" or "Narak," it isn't ours.
+
+2. CREATIVE EMPOWERMENT, NOT REPLACEMENT:
+The AI is the assistant (Co-pilot). The human creator remains the Pilot. We automate the drudgery to liberate the imagination.
+
+3. SPEED AS A FEATURE:
+In the Thai production world, everything was needed "yesterday." Our platform must be the fastest route from "Brief" to "Action."
+
+4. ETHICAL AI & LOCAL LAW:
+Strict adherence to PDPA (Thailand) and intellectual property rights for Thai artists and creators.
