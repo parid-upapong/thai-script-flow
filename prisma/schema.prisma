@@ -1,0 +1,94 @@
+// This is the core data model for ThaiCreative AI (TCAI)
+// Optimized for Thai production workflows and asset management.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductionType {
+  TVC
+  ONLINE_CONTENT
+  TIKTOK_SERIES
+  FILM
+  EVENT_VTR
+}
+
+enum ProjectStatus {
+  DRAFT
+  PRE_PRODUCTION
+  STORYBOARDING
+  READY_FOR_SHOOT
+  ARCHIVED
+}
+
+model Project {
+  id                String         @id @default(uuid())
+  workingTitle      String         // ชื่อโปรเจกต์ (e.g., "โฆษณาชาเขียว Summer 2024")
+  clientName        String?
+  agencyName        String?
+  productionType    ProductionType @default(ONLINE_CONTENT)
+  status            ProjectStatus  @default(DRAFT)
+  
+  // Thai Cultural Context Metadata
+  targetAudience    String?        // e.g., "Gen Z, ต่างจังหวัด", "Urban Professional"
+  toneAndMood       String?        // e.g., "Funny/Sad-Commercial (แบบไทยๆ)", "Hi-End"
+
+  scripts           Script[]
+  assets            Asset[]
+  collaborators     Collaborator[]
+  
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+
+  @@map("projects")
+}
+
+model Script {
+  id              String   @id @default(uuid())
+  projectId       String
+  project         Project  @relation(fields: [projectId], references: [id])
+  version         Int      @default(1)
+  title           String
+  content         Json     // Stores structured script data (Scenes, Dialogues in Thai)
+  rawMarkdown     String?  // The original Thai script input
+  
+  // Script Breakdown Summary (AI Generated)
+  breakdown       Json?    // Extracted props, cast, locations (Bangkok-centric)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("scripts")
+}
+
+model Asset {
+  id              String   @id @default(uuid())
+  projectId       String
+  project         Project  @relation(fields: [projectId], references: [id])
+  fileName        String
+  fileUrl         String
+  assetType       String   // "STORYBOARD", "REFERENCE_IMAGE", "MOOD_BOARD"
+  
+  // AI Analysis Metadata
+  tags            String[] // e.g., ["Street Food", "Sukhumvit", "Golden Hour"]
+  aiDescription   String?  // Descriptive text for screen readers or search
+  
+  createdAt       DateTime @default(now())
+
+  @@map("assets")
+}
+
+model Collaborator {
+  id        String   @id @default(uuid())
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id])
+  userId    String   // Reference to Identity Service (Clerk/Auth0)
+  role      String   // "DIRECTOR", "PRODUCER", "COPYWRITER", "AD"
+  
+  @@map("collaborators")
+}
