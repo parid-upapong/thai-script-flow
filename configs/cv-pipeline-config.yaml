@@ -1,0 +1,22 @@
+# Configuration for the Visual Intelligence Pipeline
+pipeline_settings:
+  default_resolution: [1024, 576] # 16:9 cinematic
+  model_id: "stabilityai/stable-diffusion-xl-base-1.0"
+  lora_weight: 0.8
+  device: "cuda"
+
+thai_aesthetic_presets:
+  - id: "bangkok_noir"
+    lighting: "High contrast, neon blue and magenta highlights, wet asphalt"
+    location: "Siam Square back alleys"
+  - id: "isarn_soul"
+    lighting: "Natural golden hour, soft haze, warm earth tones"
+    location: "Rural northeast Thailand landscape"
+  - id: "hi_so_minimalist"
+    lighting: "Clean high-key lighting, soft shadows, neutral tones"
+    location: "Modern Thong Lo luxury condo"
+
+image_analysis:
+  dominant_color_count: 5
+  detect_thai_text: true
+  skin_tone_consistency: true
