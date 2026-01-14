@@ -1,0 +1,39 @@
+version: "1.0"
+workflow: "Production-Planning-Agentic-Flow"
+description: "Orchestrates the breakdown of Thai scripts into actionable production data."
+
+agents:
+  - id: "scene_analyzer"
+    name: "Phaya Splitter"
+    role: "Scene Segmentation Specialist"
+    tools: ["thai_nlp_tokenizer", "regex_slugline_parser"]
+    llm: "phaya-thai-creative-v1"
+
+  - id: "element_extractor"
+    name: "Krueang-Prung Extractor"
+    role: "Prop, Costume & Talent Parser"
+    tools: ["cultural_entity_recognition", "prop_database_api"]
+    llm: "phaya-thai-creative-v1"
+
+  - id: "shot_designer"
+    name: "Mum-Klong Agent"
+    role: "Cinematographic Planner"
+    tools: ["shot_type_generator", "moodboard_query"]
+    llm: "phaya-thai-creative-v1"
+
+  - id: "logistics_planner"
+    name: "Mae-Ban Production"
+    role: "Scheduling & Resource Optimizer"
+    tools: ["google_maps_traffic_api", "thai_holiday_calendar"]
+    llm: "phaya-thai-creative-v1"
+
+dag:
+  - source: "scene_analyzer"
+    target: "element_extractor"
+    condition: "on_scenes_defined"
+  - source: "element_extractor"
+    target: "shot_designer"
+  - source: "shot_designer"
+    target: "logistics_planner"
+  - source: "logistics_planner"
+    target: "final_production_report"
